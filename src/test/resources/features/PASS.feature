@@ -4,7 +4,7 @@ Feature: Passing Scenarios
   Background:
     Given The user is on the homepage
 
-  Scenario: Veify that user can select valid stations
+  Scenario: Verify that user can select valid stations
     When The user select "POZNAŃ-" as a departure
     And The user select "WARSZAWA-" as a destination
     And The user search for trains

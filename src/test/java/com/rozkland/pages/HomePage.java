@@ -4,6 +4,7 @@ import com.rozkland.utilities.ConfigReader;
 import com.rozkland.utilities.Driver;
 import com.rozkland.utilities.Utils;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -45,6 +46,7 @@ public class HomePage extends BasePage{
 		Utils.waitForVisibility(initialPopupBtn,3);
 
 		try {
+			Utils.waitClickability(initialPopupBtn,3);
 			initialPopupBtn.click();
 		}catch (Exception e){
 			e.printStackTrace();
@@ -56,14 +58,20 @@ public class HomePage extends BasePage{
 	}
 
 	public void setDepartureFrom(String departure){
+		Utils.waitClickability(fromSection,3);
+		((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);",fromSection );
 		fromSection.sendKeys(departure);
 	}
 
 	public void setDestinationTo(String destination){
+		Utils.waitClickability(toSection,3);
 		toSection.sendKeys(destination);
 	}
 
 	public void clickSearchBtn(){
+		Utils.waitForVisibility(searchConnection,3);
+		((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);",searchConnection );
+		Utils.waitClickability(searchConnection,3);
 		searchConnection.click();
 	}
 
@@ -72,10 +80,14 @@ public class HomePage extends BasePage{
 	}
 
 	public void verifyTooltip(){
+		Utils.waitForVisibility(tooltip,3);
+		((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);",tooltip );
+		System.out.println( tooltip.getText() );
 		Assert.assertTrue(tooltip.isDisplayed());
 	}
 
 	public String getTimeFromApp(){
+		Utils.waitClickability(enterTheTime,3);
 		System.out.println("application time is: " + enterTheTime.getAttribute("value"));
 		return enterTheTime.getAttribute("value");
 	}
@@ -86,14 +98,12 @@ public class HomePage extends BasePage{
 	}
 
 	public void clickPreviousDate(){
+		Utils.waitClickability(previousDateBtn,3);
 		previousDateBtn.click();
 	}
 
-	public void clickNewEnquiry(){
-		newEnquiry.click();
-	}
-
 	public void clickFromfield(){
+		Utils.waitClickability(fromSection,3);
 		fromSection.click();
 	}
 

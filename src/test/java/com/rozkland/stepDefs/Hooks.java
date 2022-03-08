@@ -17,6 +17,7 @@ public class Hooks {
     public void setUp(){
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().manage().timeouts().implicitlyWait(Long.parseLong(ConfigReader.getProperty("implicitlyWait")), TimeUnit.SECONDS);
+        Driver.getDriver().manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
     }
 
 
